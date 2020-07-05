@@ -1,0 +1,43 @@
+<!-- Lakshmi Ravichandran -->
+<!-- Monthly view of added expesnes -->
+
+<div class="container p-5">
+  <div class="row justify-content-center">
+    <div id="login_box" class="card text-center">
+      <div class="container card-body">
+
+        <p id="login_box_title">Monthly View of Transactions</p>
+        <form action="/postmonthlyview" method="post" id="monthlyviewform">
+          <div class="form-group">
+            <!-- Date input -->
+            <label class="control-label" for="date">Date</label>
+            <input class="form-control" id="date" name="date" placeholder="YYYY-MM" type="text" required>
+          </div>
+          <div class="form-group">
+            <!-- Submit button -->
+            <button class="btn btn-warning btn-block" name="submit" type="submit">Submit</button>
+          </div>
+        </form>
+        <!-- Form code ends -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- date picker -->
+<script>
+  $(document).ready(function () {
+    var date_input = $('input[name="date"]'); //our date input has the name "date"
+    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+    var options = {
+      container: container,
+      todayHighlight: true,
+      autoclose: true,
+      format: "yyyy-mm",
+      viewMode: "months",
+      minViewMode: "months"
+    };
+    date_input.datepicker(options);
+  })
+</script>

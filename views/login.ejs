@@ -1,0 +1,64 @@
+<!-- Youwei Ma -->
+<!-- User Login -->
+
+<% include _header %>
+
+<div class="container p-5">
+
+   <!-- Alert -->
+   <% errors.forEach(function(error) { %>
+   <div class="alert alert-danger" role="alert">
+      <%= error %>
+   </div>
+   <% }) %>
+   <% infos.forEach(function(info) { %>
+   <div class="alert alert-info" role="alert">
+      <%= infos %>
+   </div>
+   <% }) %>
+
+   <!-- Login -->
+   <div class="row justify-content-center">
+      <div id="login_box" class="card text-center">
+         <div class="card-header bg-light p-5">
+            <a class="navbar-brand" href="/">
+               <img src="https://cdn.glitch.com/90d28b33-758e-4148-bcb9-41c01bc3ce2e%2Ficon_2.png?v=1587524662675"
+                  alt="logo" class="d-inline-block align-top" width="70px" height="70px">
+               <h1 class="display-4 d-inline-block text-dark">ReserveFund</h1>
+            </a>
+         </div>
+         <div class="container card-body">
+            <p id="login_box_title">Login</p>
+            <form action="/login" method="post">
+               <div class="row justify-content-center p-2">
+                  <div class="col-md-4">
+                     <p class="card-text text-right">Username:</p>
+                  </div>
+                  <div class="col-md-5">
+                     <input name="username" type="text" class="form-control" placeholder="Username" required autofocus>
+                  </div>
+               </div>
+               <div class="row justify-content-center p-2">
+                  <div class="col-md-4">
+                     <p class="card-text text-right">Password:</p>
+                  </div>
+                  <div class="col-md-5">
+                     <input name="password" type="password" class="form-control" placeholder="Password" required>
+                  </div>
+               </div>
+               <div class="row justify-content-center p-2">
+                  <div class="col-md-3">
+                     <input type="submit" value="Login" class="btn btn-warning btn-block">
+                  </div>
+               </div>
+            </form>
+         </div>
+         <div class="card-footer pt-3">
+            <p> Don't have an account? <a href="/signup">Create an account</a>.</p>
+         </div>
+      </div>
+   </div>
+
+</div>
+
+<% include _footer %>

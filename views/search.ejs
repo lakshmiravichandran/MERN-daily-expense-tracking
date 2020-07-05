@@ -1,0 +1,89 @@
+<!-- Lakshmi Ravichandran -->
+<!-- Advanced Search Form -->
+
+<form action="/postsearchview" method="post" id="searchview">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="startDate">Start Date:</label>
+        <input class="form-control" type="datetime" id="startDate" name="startDate" placeholder="YYYY-MM-DD" required>
+      </div>
+      
+        <div class="form-group col-md-4">
+        <label for="endDate">End Date:</label>
+        <input class="form-control" type="datetime" id="endDate" name="endDate" placeholder="YYYY-MM-DD" required>
+      </div>
+      
+      <div class="form-group col-md-4">
+        <label for="searchcategory">Choose a category:</label>
+        <select class="form-control" id="searchcategory" name="category">
+            <!--<option selected>Select category...</option>-->
+            <option selected>ALL</option>
+            <option>Bills & Utilites</option>
+            <option>Business</option>
+            <option>Education</option>
+            <option>Entertainment</option>
+            <option>Family</option>
+            <option>Food & Beverages</option>
+            <option>Gifts & Donations</option>
+            <option>Health & Fitness</option>
+            <option>Shopping</option>
+            <option>Transportation</option>
+            <option>Other</option>
+        </select>
+      </div>
+    </div>
+  <button type="submit" form="searchview" class="btn btn-warning">Search</button>
+</form>
+
+
+<!-- Implement both date picker in the same function - later -->
+<script>
+  // Start Date 
+    $(document).ready(function(){
+      var date_input=$('input[name="startDate"]'); 
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+        format: "yyyy-mm-dd"
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
+<script>
+  // End Date
+    $(document).ready(function(){
+      var date_input=$('input[name="endDate"]'); 
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+        format: "yyyy-mm-dd"
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
+<!-- Old version -->
+<!-- <script type="text/javascript">
+  function form_submit2() {
+     var $input1 = $(this).find("input[name=startDate]");
+     if ($input1.val()) {
+      var d1 = $input1.val();
+      var iso1 = new Date(d1).toISOString();
+      $input1.val(iso1);
+     }
+     var $input2 = $(this).find("input[name=endDate]");
+     if ($input2.val()) {
+        var d2 = $input2.val();
+        var iso2 = new Date(d2).toISOString();
+        $input2.val(iso2);
+     }
+    
+     document.getElementById("searchview").submit();
+  }    
+</script>
+-->

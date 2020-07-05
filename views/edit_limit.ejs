@@ -1,0 +1,33 @@
+<!-- Soundarya -->
+<!-- Get user limit -->
+
+<div class="container p-5">
+    <div class="row justify-content-center">
+        <div id="login_box" class="card text-center">
+            <div class="container card-body">
+                
+                <p id="login_box_title">Edit Limit</p>
+                <form action="/editlimit" method="post">
+                    <div class="row justify-content-center p-2">
+                        <div class="col-md-4">
+                            <p class="card-text text-right">Limit:</p>
+                        </div>
+                        <div class="col-md-5">
+                            <input name="limit" type="number" class="form-control" id="transactionAmount" min="0"
+                                placeholder=<%= currentUser.limit %> required autofocus>
+                        </div>
+                        <div class="row justify-content-center p-2">
+
+                        </div>
+                    </div>
+                    <div class="row justify-content-center p-2">
+                        <div class="col-md-3">
+                            <input type="submit" value="Edit" class="btn btn-warning btn-block">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

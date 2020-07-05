@@ -1,0 +1,65 @@
+<!-- Youwei Ma -->
+<!-- Admin Homepage -->
+
+<% include _header %>
+
+<!-- Navigation bar -->
+<% include _navbar %>
+
+<!-- Alert -->
+<div class="container">
+  <div class="row">
+      
+      <div class="col-lg alert alert-info alert-dismissible fade show" role="alert">
+          <%= message %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      
+  </div>
+</div>
+
+<!-- Content area -->
+<div class="container-fluid">
+
+  <% if (users) { %>
+  <div class="row py-5 justify-content-center">
+    <div class="col-lg-6">
+      <h3 class="d-inline-block align-center">There are <%= users.length %> users in the database:</h3>
+    </div>
+    <div class="col-lg-2">
+      <a class="btn btn-lg btn-warning d-inline-block" href="/sendpromo" role="button">Send Promotions</a>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8 table-responsive">
+      <!-- User list -->
+      <table id="userList" class="table table-striped table-bordered table-md">
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+          <% users.forEach(function(user) { %>
+          <tr>
+            <td><%= user.name() %></td>
+            <td><%= user.email %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <% } else { %>
+  <p>There are no users in the database.</p>
+  <% } %>
+
+</div>
+
+<!-- Footnote -->
+<% include _footnote %>
+
+<% include _footer %>

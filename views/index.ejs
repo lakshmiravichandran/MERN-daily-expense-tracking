@@ -1,0 +1,93 @@
+<!-- Youwei Ma -->
+<!-- Homepage -->
+
+<% include _header %>
+
+<!-- Navigation Bar -->
+<% include _navbar %>
+
+<!-- Jumbotron: description 1 -->
+<div class="jumbotron jumbotron-fluid m-0" style="background-color:#ffbb33;">
+    <div class="container" style="padding: 150px;">
+        <div class="row justify-content-center text-white">
+            <h1 class="display-5">Track in the present</h1>
+        </div>
+        <div class="row justify-content-center  text-white">
+            <h1 class="display-5">Save for the future</h1>
+        </div>
+        <div class="row justify-content-center text-white mt-3">
+            <p>To manage your expenses in one place. Because money matters.</p>
+        </div>
+        <div class="row justify-content-center">
+            <!-- if not login, it will jump to login page -->
+            <!-- else, to the manage page -->
+            <a class="btn btn-outline-dark col-lg-5 mt-3" href="/manage" style="font-size:24px" role="button">Start Tracking Here</a>
+        </div>
+    </div>
+</div>
+
+<!-- Jumbotron: services -->
+<div id="services" class="jumbotron jumbotron-fluid p-4 bg-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <h1 class="display-4 mb-5">Services Provided</h1>
+        </div>
+        <div class="row justify-content-around media">
+            <div class="media-body align-self-center col-4">
+                <h2>Add Expenses</h2>
+            </div>
+            <img class="img-responsive col-4" id="addexpenseimg"
+                src="https://cdn.glitch.com/90d28b33-758e-4148-bcb9-41c01bc3ce2e%2Fwallet.png?v=1587196444072"
+                alt="wallet">
+        </div>
+        <div class="row justify-content-around media">
+            <img class="img-responsive col-4"
+                src="https://cdn.glitch.com/90d28b33-758e-4148-bcb9-41c01bc3ce2e%2Fmoney.png?v=1587196429065"
+                alt="money">
+            <div class="media-body align-self-center col-4">
+                <h2>Lookup Transactions</h2>
+            </div>
+        </div>
+        <div class="row justify-content-around media">
+            <div class="media-body align-self-center col-4">
+                <h2>Summary Statistics Report</h2>
+            </div>
+            <img class="img-responsive col-4"
+                src="https://cdn.glitch.com/90d28b33-758e-4148-bcb9-41c01bc3ce2e%2Freport.png?v=1587196439287"
+                alt="report">
+        </div>
+        <div class="row justify-content-around media">
+            <img class="img-responsive col-4"
+                src="https://cdn.glitch.com/90d28b33-758e-4148-bcb9-41c01bc3ce2e%2Fbudget.png?v=1587196411543"
+                alt="budget">
+            <div class="media-body align-self-center col-4">
+                <h2>Budget Planner</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Jumbotron: description 2 -->
+<div class="jumbotron jumbotron-fluid m-0" style="background-color:#343a40;">
+    <div class="container">
+        <div class="row justify-content-center text-white">
+            <img src="https://cdn.glitch.com/90d28b33-758e-4148-bcb9-41c01bc3ce2e%2Ficon.png?v=1587165913391"
+                alt="logo_w" width="200px" height="200px" />
+        </div>
+        <div class="row justify-content-center text-white">
+            <h1 class="display-4">ReserveFund</h1>
+        </div>
+        <div class="row justify-content-center text-white">
+            <h3 class="display-5">Expense Manager</h3>
+        </div>
+        <!-- if users are logging in, no sign up button displayed -->
+        <% if (!currentUser) { %> 
+        <div class="row justify-content-center">
+            <a class="btn btn-outline-warning col-lg-5 mt-3" href="/signup" role="button">Sign up Free</a>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<% include _footnote %>
+<% include _footer %>

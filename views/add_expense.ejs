@@ -1,0 +1,106 @@
+<!-- Lakshmi Ravichandran -->
+<!-- Add expense -->
+
+<!-- Button trigger modal -->
+<div class="container">
+  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addExpenseModal">
+    Add an expense
+  </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addExpenseModal" tabindex="-1" role="dialog" aria-labelledby="addExpenseModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <!--Content-->
+    <div class="modal-content">
+
+
+      <!--Modal header-->
+      <div class="modal-header">
+        <!--<img src="" alt="piggybank" class="rounded-circle img-responsive">-->
+        <h4 class="modal-title">
+          Add an expense
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!--header-->
+
+      <!--Modal body-->
+      <div class="modal-body">
+
+        <div class="text-center">
+          <!--<i class="fa fa-plus-square" style="font-size:24px;"></i>-->
+          <form action="/postexpense" method="post" id="form1">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="transactionAmount">Amount</label>
+                <input name="amount" type="number" min="0" class="form-control" id="transactionAmount" placeholder="0" required>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="transactionNote">Note</label>
+                <input name="note" type="text" class="form-control" id="transactionNote" placeholder="Note">
+              </div>
+            </div>
+
+            <div class="form-group col-md-12">
+              <label for="transactionCategory">Choose a category</label>
+              <select name="category" id="transactionCategory" class="form-control" required>
+                <!-- Default category set to "Other" -->
+                <option selected>Select from category</option>
+                <option>Bills & Utilites</option>
+                <option>Business</option>
+                <option>Education</option>
+                <option>Entertainment</option>
+                <option>Family</option>
+                <option>Food & Beverages</option>
+                <option>Gifts & Donations</option>
+                <option>Health & Fitness</option>
+                <option>Shopping</option>
+                <option>Transportation</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <!--body-->
+
+        <!--Modal footer-->
+        <div class="modal-footer">
+          <button type="button" form="form1" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button onclick="form_submit1()" type="button" form="form1" class="btn btn-primary">Save changes</button>
+        </div>
+        <!--footer-->
+      </div>
+    </div>
+    <!--content-->
+  </div>
+  <!--modal cascading avatar-->
+</div>
+<!--modal fade-->
+
+<script type="text/javascript">
+  function form_submit1() {
+    document.getElementById("form1").submit();
+  }
+</script>
+
+
+
+<!--<script type="text/javascript">
+  function form_submit1() {
+    var amount = document.getElementById("transactionAmount").value;
+    var category = document.getElementById("transactionCategory").value;
+    if(amount == 0 || category == "Select from category" || amount == "") {
+         alert('Please fill amount and choose a category!');
+    } else {
+        document.getElementById("form1").submit();
+    }
+  }    
+</script>-->
+
+
