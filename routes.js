@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
 var nodemailer = require("nodemailer");
 const { check, validationResult } = require("express-validator");
 
-// Soundarya - data models
 // import data models
 const User = require("./models/user");
 const Expense = require("./models/expense");
@@ -21,7 +20,6 @@ router.use(function (req, res,next) {
   next();
 });
 
-// Sayantani - EMAIL alerts
 //EMAIL configurations
 var transporter = nodemailer.createTransport({
   host: "smtp-mail.outlook.com", // hostname
@@ -70,7 +68,6 @@ router.get("/admin", function (req, res) {
   });
 });
 
-// Sayantani - Promotion email alerts
 //Admin send promotion email to users
 router.get("/sendpromo", function (req, res) {
   User.find({}, function (err, user) {
@@ -98,7 +95,6 @@ router.get("/sendpromo", function (req, res) {
   });
 });
 
-// Soundarya - Admin signup
 // Add admin account
 // Only for Postman
 router.post("/addadmin",
@@ -138,7 +134,6 @@ router.post("/addadmin",
 
 //USER routes
 
-// Soundarya - Password Validation
 // Password restriction schema
 var schema = new passwordValidator();
 // Add properties to it
@@ -165,9 +160,6 @@ router.get("/signup", function (req, res) {
   res.render("signup", { title: "Sign up" });
 });
 
-
-
-// Soundarya - Route to User signup and validation checks
 router.post("/signup", function (req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
@@ -230,7 +222,6 @@ router.post(
   })
 );
 
-// Soundarya - Route to logout
 router.get("/logout", checkAuthentication, function (req, res) {
   req.logout();
   req.session.destroy();
@@ -277,7 +268,7 @@ router.get("/manage", checkAuthentication, function (req, res) {
   // res.render("manage_expenses", { title: 'My Expense' });
 });
 
-// Soundarya - Route to post expense
+
 router.post("/postexpense", checkAuthentication, function (req, res, next) {
   var amount = req.body.amount;
   var category = req.body.category;
@@ -300,7 +291,7 @@ router.post("/postexpense", checkAuthentication, function (req, res, next) {
 
   newexpense.save(next);
   
-  // Sayantani - Budget limit exceed email alert
+
 
   var totExpense = 0;
 
@@ -342,7 +333,7 @@ router.post("/postexpense", checkAuthentication, function (req, res, next) {
   //res.render("view_expenses", { newexpense})
 });
 
-// Soundarya - edit user limit
+
 router.post("/editlimit", checkAuthentication, function (req, res, next) {
   var username = req.user.username;
   var limit = req.body.limit;
@@ -426,7 +417,7 @@ router.post("/postsearchview", checkAuthentication, function (req, res, next) {
 });
 
 
-// Soundarya - authentication middleware
+
 function checkAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
     next();
