@@ -1,0 +1,55 @@
+/* Youwei Ma - CSS */
+
+/* middle size break point for brand */
+@media (max-width: 786px) {
+  .navbar-brand img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .navbar-brand h1 {
+    font-size: 45px;
+  }
+}
+
+/* small size break point for brand */
+@media (max-width: 576px) {
+  .navbar-brand img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .navbar-brand h1 {
+    font-size: 25px;
+  }
+}
+
+#manage_expense_tab {
+  min-height: 600px;
+}
+
+#login_box,
+#signup_box {
+  width: 35rem;
+}
+
+#login_box_title,
+#signup_box_title {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 32px;
+}
+
+/* .col-sm-6 {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; 
+} */
+
+/* Clear floats after the columns */
+/* this makes content not centered */
+/* .row:after {
+  content: "";
+  display: table;
+  clear: both;
+} */

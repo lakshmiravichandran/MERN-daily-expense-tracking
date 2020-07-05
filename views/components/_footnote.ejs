@@ -1,0 +1,73 @@
+<!-- Youwei Ma -->
+<!-- Foot note -->
+
+<footer class="page-footer font-small stylish-color-dark m-0 border-top">
+    <div class="container-fluid text-center text-md-center p-3">
+        <% if (title == "Home") { %>
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <h5 class="font-weight-bold text-uppercase">About</h5>
+                <p>Reserve Fund provides you with the two solutions for your personal finance: smarter spending habit
+                    and better
+                    saving/investment for your future.
+                    It’s a powerful tool to track your personal finance expenses.</p>
+            </div>
+        </div>
+        <% }  %>
+    </div>
+    <div class="container-fluid text-center text-lg-left p-3 bg-light border-top">
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <% if (!currentUser && title == "Home") { %>
+                <h5 class="font-weight-bold text-uppercase">Admin</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="/loginadmin" target="_blank">Admin Panel</a>
+                    </li>
+                </ul>
+                <% } %>
+            </div>
+            <div class="col-lg-3">
+                <h5 class="font-weight-bold text-uppercase">Links</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="https://www.glitch.com" target="_blank">glitch</a>
+                    </li>
+                    <li>
+                        <a href="https://www.flaticon.com/" target="_blank">flaticon</a>
+                    </li>
+                    <li>
+                        <a href="https://www.mint.com" target="_blank">mint</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Contact us -->
+            <div class="col-lg-5">
+                <h5 class="font-weight-bold text-uppercase">Contact us</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <p>Sayantani Bhattacharjee: sab301@pitt.edu</p>
+                    </li>
+                    <li>
+                        <p>Lakshmi Ravichandran: lar146@pitt.edu</p>
+                    </li>
+                    <li>
+                        <p>Soundarya Nagendra Sravan Kumar Patel: sos505@pitt.edu</p>
+                    </li>
+                    <li>
+                        <p>Youwei Ma: yom26@pitt.edu</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center pt-3 m-0 bg-dark">
+        <div class="container">
+            <div class="row">
+                <p class="col align-self-center text-white">Spring 2020 INFSCI 2560: Monthly-Bills</p>
+            </div>
+        </div>
+    </div>
+</footer>

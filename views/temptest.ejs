@@ -1,0 +1,17 @@
+<!-- No Use - For debugging HTML header data error -->
+
+<div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title" style="display: flex;">New Transaction</h1>
+            <h5 class="lead"><%= newexpense.Category %> </h5>
+            <p class="lead" style="color: #e51c23!important;font-weight: 400; font-size: 30px;"> $
+              <%= newexpense.Amount %> </p>
+            <p class="lead" style=" font-size: 12px;line-height: 24px;color: rgba(0,0,0,.54);">
+              <small><%= newexpense.Note %> </small>
+            </p>
+            <p class="lead"><%= newexpense.created.toDateString() %> </p>
+            <p class="lead"><%= currentUser.name()  %> </p>
+          </div>
+        </div>
+      </div>

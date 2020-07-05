@@ -1,0 +1,104 @@
+<!-- Youwei Ma -->
+<!-- Start Tracking Here - Services -->
+
+<% include _header %>
+
+<!-- Navbar -->
+<% include _navbar %>
+
+<!-- Alert -->
+<div class="container">
+    <div class="row">
+        <% errors.forEach(function(error) { %>
+        <div class="col-lg-6 alert alert-danger alert-dismissible fade show" role="alert">
+            <%= error %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% }) %>
+        <% infos.forEach(function(info) { %>
+        <div class="col-lg alert alert-info alert-dismissible fade show" role="alert">
+            <%= info %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% }) %>
+    </div>
+</div>
+
+<!-- Content area -->
+<div id="manage_expense_tab" class="container p-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card text-center">
+                <div class="card-header bg-light">
+                    <!-- Tabs -->
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#today">Today</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#editlimit">Edit Limit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#monthly">Monthly View</a>
+                        </li>
+                        <li class="nav-item disabled">
+                            <a class="nav-link" data-toggle="tab" href="#search">Search</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#statistics">Statistics</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-body">
+                    <!-- Contents -->
+                    <div class="tab-content">
+                        <!-- Today -->
+                        <div id="today" class="tab-pane in active">
+                            <% 
+                            var gmtDate = new Date();
+                            var edtDate = new Date(gmtDate.getTime() - 240*60*1000).toDateString();
+                            %> 
+                            <p>Today : <%= edtDate %></p>                            
+                            <% include add_expense %>
+                            
+                        </div>
+
+                        <!--edit limit-->
+                        <div id="editlimit" class="tab-pane">
+                            <p>Your current monthly limit is: <b><%= currentUser.limit %></b></p>
+                            <% include edit_limit %>
+                        </div>
+
+                        <!-- Monthly View -->
+                        <div id="monthly" class="tab-pane">
+                            <% include monthly_view %>
+                        </div>
+
+                        <!-- Search -->
+                        <div id="search" class="tab-pane">
+                            <p id="login_box_title">Advanced Search</p>
+                            <% include search %>
+                        </div>
+
+                        <!-- Statistics-->
+                        <div id="statistics" class="tab-pane">
+                            <% include _statistics %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Footnote -->
+<% include _footnote %>
+
+<% include _footer %>

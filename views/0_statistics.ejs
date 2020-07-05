@@ -1,0 +1,198 @@
+<!-- New version in components/_statistics -->
+<!-- NOT USING - OLDER VERSION -->
+
+<% include _header %>
+
+<% include _navbar %>
+
+
+<body>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+  <div white-space: nowrap class="container">
+    <h3>
+      Expense report statistics
+    </h3>
+    <a class="btn btn-lg btn-primary" href="/manage" role="button">Back to homepage &raquo;</a>
+    <div class="row">
+      <div style="float:left;width: 33.33%;padding: 10px;height: 300px;" class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <canvas id="piechart" cwidth="120" height="200"></canvas>
+
+
+            <script type="text/javascript">
+              // Default chart configurations
+              Chart.defaults.global.defaultFontSize = 16;
+              Chart.defaults.global.defaultFontColor = 'black';
+              Chart.defaults.global.defaultFontFamily = "Georgia";
+              Chart.defaults.global.legend.display = false;
+              Chart.defaults.scale.gridLines.display = false;
+              Chart.defaults.scale.gridLines.color = 'green';
+              var userLimit = <%= currentUser.getLimit()%>
+              console.log("User limit is " + userLimit);
+
+              var canvas = document.getElementById("piechart");
+              var ctx = canvas.getContext("2d");
+              var data_list = [];
+              var label_list = [];
+              var today = new Date();
+              var aggregate_expenses = <%- JSON.stringify(expenses) %>;
+              console.log(today.getFullYear());
+              console.log(today.getMonth() + 1);
+              console.log(aggregate_expenses);
+              // Sort JSON Array based on total
+              aggregate_expenses.sort(function (a, b) {
+                return a.total < b.total;
+              });
+              for (var i = 0; i < aggregate_expenses.length; i++) {
+                var expense = aggregate_expenses[i];
+                var category = expense._id.category;
+                var sum_total = expense.total;
+                var year = expense._id.year;
+                var month = expense._id.month;
+                //condition to get only current month expenses - category wise
+                if (year == today.getFullYear() && month == today.getMonth() + 1) {
+                  label_list.push(category);
+                  data_list.push(sum_total);
+                }
+              }
+              console.log(aggregate_expenses);
+              console.log(data_list);
+
+              var piechart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                  labels: label_list,
+                  datasets: [{
+                    //label: "Expense category",
+                    backgroundColor: ["#F47A1F", "#377B2B", "#00529B", "#7AC142", "#FDBB2F"],
+                    data: data_list
+                  }]
+                },
+                options: {
+                  title: {
+                    display: true,
+                    text: 'Latest Monthly Expenses'
+                  },
+                  layout: {
+                    padding: {
+                      left: 50,
+                      right: 0,
+                      top: 0,
+                      bottom: 0
+                    }
+                  },
+                  scales: {
+                    xAxes: [{
+                      scaleLabel: {
+                        display: true,
+                        labelString: 'Expenses per category in $'
+                      }
+                    }]
+                  }
+                }
+              });
+
+
+            </script>
+
+          </div>
+        </div>
+      </div>
+
+      <div style="float:left;width: 33.33%;padding: 10px;height: 300px;" class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <canvas id="linechart" cwidth="120" height="200"></canvas>
+            <script type="text/javascript">
+              var canvas = document.getElementById("linechart");
+              var ctx = canvas.getContext("2d");
+              var data = {};
+              var aggregate_expenses = <%- JSON.stringify(expenses) %>;
+
+              for (var i = 0; i < aggregate_expenses.length; i++) {
+                var expense = aggregate_expenses[i];
+                var sum_total = expense.total;
+                var year_month_str = expense._id.year.toString() + expense._id.month.toString();
+                var year_month = parseInt(year_month_str);
+                console.log(year_month);
+                if (year_month in data) {
+                  data[year_month] = data[year_month] + sum_total;
+                } else {
+                  data[year_month] = sum_total;
+                }
+              }
+              console.log(data);
+
+              var key_list = Object.keys(data);
+              // Sort data based on yyyy-mm in ascending 
+              key_list.sort();
+              var data_list = [];
+              var label_list = [];
+              for (var i = 0; i < key_list.length; i++) {
+                var k = key_list[i];
+                var key = k.toString();
+                var label = key.slice(0, 4) + "-" + key.slice(4);
+                label_list.push(label);
+                data_list.push(data[k]);
+              }
+
+              console.log(data_list);
+              console.log(label_list);
+              var linechart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                  labels: label_list,
+
+                  datasets: [{
+                    //label: "Total Expenses",
+                    fill: false,
+                    backgroundColor: ["#F47A1F", "#377B2B", "#00529B", "#7AC142", "#FDBB2F"],
+                    borderColor: "red",
+                    data: data_list
+                  }]
+                },
+                options: {
+
+                  title: {
+                    display: true,
+                    text: 'Monthly Expenses Trend'
+                  },
+                  scales: {
+                    xAxes: [{
+                      display: true,
+                      ticks: {
+                        min: 0,
+                        beginAtZero: true
+                      },
+                      scaleLabel: {
+                        display: true,
+                        labelString: 'Month (YYYY-MM)'
+                      }
+                    }],
+                    yAxes: [{
+                      scaleLabel: {
+                        display: true,
+                        labelString: 'Monthly expenses ($)'
+                      }
+                    }]
+                  },
+                  layout: {
+                    padding: {
+                      left: 50,
+                      right: 0,
+                      top: 0,
+                      bottom: 0
+                    }
+                  }
+                }
+              });
+
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>

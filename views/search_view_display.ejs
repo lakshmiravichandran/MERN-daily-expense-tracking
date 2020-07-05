@@ -1,0 +1,44 @@
+<!-- Lakshmi Ravichandran -->
+<!-- Expense view for advanced search -->
+
+<% include _header %>
+
+<!-- Navigation Bar -->
+<% include _navbar %>
+
+ <main role="main" class="container">
+      <div class="jumbotron">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>Search Result</h2>
+         <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Transaction Date</th>
+                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Note</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% expenses.forEach(function(expense){ %>
+                <tr> 
+                    <% if(expense.created.toISOString().slice(0,10) >= start_date && expense.created.toISOString().slice(0,10) <= end_date) { %>
+                      <td><%= expense.created.toLocaleDateString('en-US') %> </td>
+                      <td><%= expense.Category %> </td>
+                      <td><%= expense.Amount %></td>
+                      <td><%= expense.Note %> </td>
+                    <% } %>
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+           <a class="btn btn-lg btn-primary" href="/manage" role="button">Back &raquo;</a>
+        </div>
+      </div>
+</div>
+</div>
+</main>
+
+<% include _footer %>
